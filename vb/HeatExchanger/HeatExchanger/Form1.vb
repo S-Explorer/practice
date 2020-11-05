@@ -1,4 +1,4 @@
-﻿Imports Microsoft.Office.Interop
+Imports Microsoft.Office.Interop
 Imports System.Collections
 
 'Imports System.IO
@@ -11,24 +11,24 @@ Public Class Exchanegr
     'Public SAVE_WORD As New SaveFileDialog 'doc的文档保存
     Dim WORD_APP As Word.Application        '初始化word程序
     Dim WORD_DOC As Word.Document           '初始化word文档
-    Dim xls_app As New Excel.Application
-    Dim xls_book As Excel.Workbook
-    Dim xls_sheet As Excel.Worksheet
+    Dim xls_app As New Excel.Application    '初始化excel程序
+    Dim xls_book As Excel.Workbook          '初始化excel工作簿
+    Dim xls_sheet As Excel.Worksheet        '初始化excel工作表
 
     'Dim panel As New Panel
     'Dim panel_W As New Panel
-    Dim control_list1 As New ArrayList
-    Dim control_list2 As New ArrayList
+    Dim control_list1 As New ArrayList      '定义一个数组列表存储label控件
+    Dim control_list2 As New ArrayList      '定义一个数组列表存储txtbox控件
     'Dim group1 As New GroupBox
     'Dim group2 As New GroupBox
 
-    Private Property File_Path As String = System.Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+    Private Property File_Path As String = System.Environment.GetFolderPath(Environment.SpecialFolder.Desktop)      '定义一个属性存储桌面路径
 
     Private Sub Exchanegr_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         MsgBox("用于测试故灰色部分为默认数值，不予修改！", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "注意")  '程序使用注意说明
         GIFpicture.SizeMode = PictureBoxSizeMode.StretchImage
         'GIFpicture.Image.RotateFlip(RotateFlipType.Rotate90FlipNone)
-        control_list1.Add(Label1)
+        control_list1.Add(Label1)                                          '这一点大块是将控件添加到一个数组中方便后续对空间的批量操作 
         control_list1.Add(Label2)
         control_list1.Add(Label3)
         control_list1.Add(Label4)
@@ -76,12 +76,12 @@ Public Class Exchanegr
     End Sub
 
     Private Sub 计算ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 计算ToolStripMenuItem.Click
-        If tube_list.SelectedItem <> "无缝钢管25X2.5" And ComboBox1.SelectedItem <> "等边三角形(必选)" Then
-            MsgBox("请确认'管束的材料规格'和'管的排列方式'已经选择")
-        Else
+        If tube_list.SelectedItem = "无缝钢管25X2.5" And ComboBox1.SelectedItem = "等边三角形(必选)" Then
             wuxing()
             heat()
-            Face()
+            Face()   
+        Else
+            MsgBox("请确认'管束的材料规格'和'管的排列方式'已经选择")
         End If
     End Sub
 
@@ -217,24 +217,24 @@ Public Class Exchanegr
 
 
     '-------------------------------------WORD的保存---------------------------------------------------------'
-    Public Sub New_Word()
+    Public Sub New_Word()               '调用一个word程序
         WORD_APP = New Word.Application
         NEW_DOC()
         'WORD_APP.Visible = True
     End Sub
 
-    Public Sub NEW_DOC()
+    Public Sub NEW_DOC()                '添加一个word文档
         WORD_DOC = WORD_APP.Documents.Add()
     End Sub
 
-    Public Sub Add_Text(ByRef STR As String)
+    Public Sub Add_Text(ByRef STR As String)    '为word文档中书写内容
         WORD_APP.Selection.TypeText(STR)
     End Sub
 
     Private Sub 保存为word文本ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 保存为word文本ToolStripMenuItem.Click
         'SAVE_WORD.InitialDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.Desktop)        'word保存对话框的路径
         'SAVE_WORD.Filter = "word文件(.docx)|*.docx"                               'word保存对话框的文件拓展名过滤器
-        'SAVE_WORD.Title = "word文件保存 "                                            'word文件对话框的标题"
+        'SAVE_WORD.Title = "word文件保存 "                                         'word文件对话框的标题"
         'SAVE_WORD.RestoreDirectory = True
         Dim file_text As String = record()                                  '导入要保存的数据
         Dim file_name As String                                             '要保存的文件名和路径
@@ -242,10 +242,10 @@ Public Class Exchanegr
             If MessageBox.Show("接下来保存为word文件") = Windows.Forms.DialogResult.OK Then    '开始保存
                 file_name = File_Path & "\默认数据.docx"
                 New_Word()
-                Add_Text(file_text)
-                WORD_DOC.SaveAs(file_name)
-                WORD_DOC.Close()
-                MsgBox("保存成功！")        '提示保存成功
+                Add_Text(file_text)                         '为word的内容添加文本
+                WORD_DOC.SaveAs(file_name)                  '保存的文件名和位置
+                WORD_DOC.Close()                            '关闭文件
+                MsgBox("保存成功！")                         '提示保存成功
             End If
         Catch ex As Exception
             MsgBox("something erro !")
@@ -255,38 +255,43 @@ Public Class Exchanegr
 
     '-----------------------------------------Excel文件保存-------------------------------------------------------'
     Private Sub Excel_Creat()
-        xls_book = xls_app.Workbooks.Add
-        xls_sheet = xls_book.Sheets(1)
-        xls_sheet.Name = "计算数据"
+    xls_book = xls_app.Workbooks.Add     '创建一个excel工作簿
+        xls_sheet = xls_book.Sheets(1)      '工作簿中设置工作表
+        xls_sheet.Name = "计算数据"         '为工作表命名
         Try
             For i = 1 To 19 Step 1
-                xls_sheet.Cells(i, 1) = control_list1.Item(i - 1).Text
-                xls_sheet.Cells(i, 2) = control_list2.Item(i - 1).Text
+                xls_sheet.Cells(i, 1) = control_list1.Item(i - 1).Text              '将窗口文本栏导入到工作表中
+                xls_sheet.Cells(i, 2) = control_list2.Item(i - 1).Text              '将窗口数据栏导入到工作表中
             Next
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
         End Try
-
-    End Sub
-
-    '-------------------------------------------------------------------------------------------------------'
-    Private Sub 联系我们ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 联系我们ToolStripMenuItem.Click
-        MsgBox("电话：1234-45678910" & Environment.NewLine & "邮箱123456@gmail.com")
-    End Sub
-
-    Private Sub 帮助ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 帮助ToolStripMenuItem.Click
-        MsgBox("暂时没有此功能，以后会开发！", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "帮助说明")
     End Sub
 
     Private Sub 保存为excel文本ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 保存为excel文本ToolStripMenuItem.Click
         Excel_Creat()
-        xls_app.ActiveWorkbook.SaveAs(File_Path + "\test.xlsx")
-        MessageBox.Show("保存成功", "保存Excel")
-        xls_book.Close()
-        xls_app = Nothing
+        xls_app.ActiveWorkbook.SaveAs(File_Path + "\test.xlsx")                     '保存的路径和文件名
+        MessageBox.Show("保存成功", "保存Excel")                                      '提示保存成功
+        xls_book.Close()                                                            '关闭excel
+        xls_app = Nothing                                                          '清空缓存数据
     End Sub
+    '-------------------------------------------------------------------------------------------------------'
 
+    '---------------------------------------联系方式按钮------------------------------------------------------'
+    Private Sub 联系我们ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 联系我们ToolStripMenuItem.Click
+        MsgBox("电话：1234-45678910" & Environment.NewLine & "邮箱123456@gmail.com","联系")
+    End Sub
+    '-------------------------------------------------------------------------------------------------------'
+
+    '--------------------------------------帮助文档说明------------------------------------------------------'
+    Private Sub 帮助ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 帮助ToolStripMenuItem.Click
+        MsgBox("暂时没有此功能，以后会开发！", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "帮助说明")
+    End Sub
+    '-------------------------------------------------------------------------------------------------------'
+
+    '---------------------------------------数据清除-----------------------------------------------------'
     Private Sub 清除ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 清除ToolStripMenuItem.Click
 
     End Sub
+    '-------------------------------------------------------------------------------------------------------'
 End Class
