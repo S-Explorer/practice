@@ -1,0 +1,16 @@
+I:\VB\HFUT\calculator\HeatExchanger\HeatExchanger\bin\Debug\HeatExchanger.exe.config
+I:\VB\HFUT\calculator\HeatExchanger\HeatExchanger\bin\Debug\HeatExchanger.exe.manifest
+I:\VB\HFUT\calculator\HeatExchanger\HeatExchanger\bin\Debug\HeatExchanger.application
+I:\VB\HFUT\calculator\HeatExchanger\HeatExchanger\bin\Debug\HeatExchanger.exe
+I:\VB\HFUT\calculator\HeatExchanger\HeatExchanger\bin\Debug\HeatExchanger.pdb
+I:\VB\HFUT\calculator\HeatExchanger\HeatExchanger\bin\Debug\HeatExchanger.xml
+I:\VB\HFUT\calculator\HeatExchanger\HeatExchanger\obj\Debug\Interop.QuartzTypeLib.dll
+I:\VB\HFUT\calculator\HeatExchanger\HeatExchanger\obj\Debug\HeatExchanger.vbproj.ResolveComReference.cache
+I:\VB\HFUT\calculator\HeatExchanger\HeatExchanger\obj\Debug\HeatExchanger.Exchanegr.resources
+I:\VB\HFUT\calculator\HeatExchanger\HeatExchanger\obj\Debug\HeatExchanger.Resources.resources
+I:\VB\HFUT\calculator\HeatExchanger\HeatExchanger\obj\Debug\HeatExchanger.vbproj.GenerateResource.Cache
+I:\VB\HFUT\calculator\HeatExchanger\HeatExchanger\obj\Debug\HeatExchanger.exe.manifest
+I:\VB\HFUT\calculator\HeatExchanger\HeatExchanger\obj\Debug\HeatExchanger.application
+I:\VB\HFUT\calculator\HeatExchanger\HeatExchanger\obj\Debug\HeatExchanger.exe
+I:\VB\HFUT\calculator\HeatExchanger\HeatExchanger\obj\Debug\HeatExchanger.xml
+I:\VB\HFUT\calculator\HeatExchanger\HeatExchanger\obj\Debug\HeatExchanger.pdb
