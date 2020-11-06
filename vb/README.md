@@ -2,5 +2,5 @@
 
 可支持导出txt，word，excel等文件格式。
 
-![](C:\Users\Administrator\Desktop\修改版本.png)
+![](/vb/HeaterExchanger.jpg/)
 
