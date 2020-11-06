@@ -2,5 +2,5 @@
 
 可支持导出txt，word，excel等文件格式。
 
-![](/vb/HeaterExchanger.jpg/)
+![Desktop View](/vb/HeaterExchanger.png/)
 
