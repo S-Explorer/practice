@@ -4,6 +4,3 @@
 
 ![Desktop View](/vb/HeatExchanger/HeatExchanger.png/)
 
-
-连接测试文件。
-
