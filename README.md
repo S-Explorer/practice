@@ -15,4 +15,7 @@
 ### C++目录存放个人的C++学习项目
 
 - 简易联系人手册
+
 - CoinGame：添加了Qt学习过程中制作的翻金币游戏
+
+  ![CoinGame](./C++/CoinGame.png)
